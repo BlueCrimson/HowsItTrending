@@ -6,11 +6,13 @@ import time
 import json
 #from keys import classes/functions and etc
 from keys import *
+
+
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_tempalte("index.html")
+    return render_template("index.html")
 
 #RESULTS PAGE
 @app.route('/results', methods=['POST'])
