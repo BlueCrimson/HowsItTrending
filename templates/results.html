@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+      <div id="heroWrapper">
+        <h1>RESULTS: How's it Trending</h1>
+        <p>
+            <tr>
+           <!-- SPACING MATTERS -->
+                <td> {{ dog }} </td>
+               {% for i in dog %}
+                  <p> {{ i }} </p>
+               {% endfor %} 
+           </tr>
+        </p>
+        </div>
+    </body>
+</html>

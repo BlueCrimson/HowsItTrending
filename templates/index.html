@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='reset.css?q=1280549780"') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='index_styles.css?q=1280549780"') }}">
+</head>
+<body>
+	<div id="heroWrapper">
+	    <h1>How's It Trending</h1>
+	    <form action="http://127.0.0.1:5000/results" method="POST" id="searchBar">
+	        <input type="text" name="text">
+	        <input type="submit"  value="submit">
+	    </form>
+    </div>
+</body>
+</html>
