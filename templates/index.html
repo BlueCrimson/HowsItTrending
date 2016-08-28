@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-	<link rel="stylesheet" href="{{ url_for('static', filename='reset.css?q=1280549780"') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='index_styles.css?q=1280549780"') }}">
+	<!-- RESET CSS -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
+	<!-- GENERAL STYLES -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+	<!-- PAGE SPECIFIC STYLES -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='index_styles.css') }}">
+	<!-- FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
 </head>
 <body>
 	<div id="heroWrapper">

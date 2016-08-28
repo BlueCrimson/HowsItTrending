@@ -14,6 +14,9 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+
+
+
 #RESULTS PAGE
 @app.route('/results', methods=['POST'])
 def my_form_post():
