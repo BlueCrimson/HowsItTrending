@@ -5,7 +5,6 @@ import tweepy
 import time
 import json
 #from keys import classes/functions and etc
-from keys import *
 
 
 app = Flask(__name__)
@@ -19,11 +18,13 @@ def my_form_post():
     tmp_data = []
     text = request.form
     keyword = request.form["text"]  #Grab input data from the form
-    for tweet in tweepy.Cursor(api.search, q=keyword).items(1):
-        tmp_data.append(tweet)
-    lastest_tweet = len(tmp_data) - 1
-    tweet_info = print_tweet(tmp_data[lastest_tweet])
-    return render_template("results.html", dog = tweet_info)
-
+    try:
+        for tweet in tweepy.Cursor(api.search, q=keyword).items(1):
+            tmp_data.append(tweet)
+        lastest_tweet = len(tmp_data) - 1
+        tweet_info = print_tweet(tmp_data[lastest_tweet])
+        return render_template("results.html", dog = tweet_info)
+    except:
+        return render_template("bad_results.html")
 if __name__ == "__main__":
     app.run()
