@@ -14,16 +14,19 @@ def index():
     return render_template("index.html")
 #RESULTS PAGE
 @app.route('/results', methods=['POST'])
+
+
 def my_form_post():
-    tmp_data = []
-    text = request.form
-    keyword = request.form["text"]  #Grab input data from the form
+    listOfTweets = [{}]
+    numOfTweets = 1
+    #text = request.form #returns the array
+    keyword = request.form["search_query"]  #Grab input data from the form
     try:
-        for tweet in tweepy.Cursor(api.search, q=keyword).items(1):
-            tmp_data.append(tweet)
-        lastest_tweet = len(tmp_data) - 1
-        tweet_info = print_tweet(tmp_data[lastest_tweet])
-        return render_template("results.html", dog = tweet_info)
+        tweet_list = get_tweets(listOfTweets, keyword, numOfTweets)
+        retweetAvg = "100"
+        retweetAvg = process_tweets(tweet_list)
+        #print avg_retweet
+        return render_template("results.html", dog = tweet_list, work = retweetAvg)
     except:
         return render_template("bad_results.html")
 if __name__ == "__main__":

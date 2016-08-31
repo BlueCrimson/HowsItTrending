@@ -10,20 +10,44 @@ auth = tweepy.OAuthHandler(consumer_key(), consumer_secret())
 auth.set_access_token(access_token(), access_token_secret())
 api = tweepy.API(auth)
 
-def print_tweet(tweet):
-    tweet_info = []
-    tweet_info.append("@%s - %s (%s)" % (tweet.user.screen_name, tweet.user.name, tweet.created_at))
-    tweet_info.append(tweet.text)
-    tweet_info.append("Tweet coordinates: " + str(tweet.coordinates))
-    tweet_info.append("Author Location: " + tweet.user.location)
-    tweet_info.append("Retweet Count: " + str(tweet.retweet_count))
-    tweet_info.append("Retweeted: " + str(tweet.retweeted))
-    tweet_info.append("Phone Type: " + str(tweet.source))
-    #tweet_info.append("Sensitive: " + str(tweet.possibly_sensitive))
-    tweet_info.append("Language: " + str(tweet.lang))
-    return tweet_info
-    #The dot operator allows for EASY dict-value getting
+def get_tweets(listOfTweets, keyword, numOfTweets):
+    for tweet in tweepy.Cursor(api.search, q=keyword).items(numOfTweets):
+        listOfTweets.append({'Screen Name': tweet.user.screen_name})
+        listOfTweets.append({'User Name': tweet.user.name})
+        listOfTweets.append({'Tweet Created At': str(tweet.created_at)})
+        listOfTweets.append({'Tweet Text': tweet.text})
+        listOfTweets.append({'User Location': str(tweet.user.location)})
+        listOfTweets.append({'Tweet Coordinates': str(tweet.coordinates)})
+        listOfTweets.append({'Retweet Count': str(tweet.retweet_count)})
+        listOfTweets.append({'Retweed': str(tweet.retweeted)})
+        listOfTweets.append({'Phone Type': str(tweet.source)})
+        #listOfTweets.append({'Sensitive': })
+        listOfTweets.append({'Language': str(tweet.lang)})
+    return listOfTweets
 
+def process_tweets(listOfTweets):
+    numOfRetweets = 0
+    count = 0
+    for tweet in listOfTweets:
+        if tweet.get('Retweet Count'):
+            numOfRetweets += int(tweet.get('Retweet Count'))
+        count += 1
+    test = numOfRetweets/count
+    return float(numOfRetweets/count)
+
+
+
+#listOfTweets = [{}]
+#print get_tweets(listOfTweets, "ok", 1)
+#listOfTweets = get_tweets(listOfTweets, '#PokemonGo', 1)
+#print process_tweets(listOfTweets)
+
+#for i in listOfTweets:
+#    if i.get('Retweet Count'):
+#        print i.get('Retweet Count')
+
+#The dot operator allows for EASY dict-value getting
 #process_data(data)
 #for tweet in data:
 #    print_tweet(tweet)
+
