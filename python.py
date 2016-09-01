@@ -14,18 +14,14 @@ def index():
     return render_template("index.html")
 #RESULTS PAGE
 @app.route('/results', methods=['POST'])
-
-
 def my_form_post():
     listOfTweets = [{}]
-    numOfTweets = 1
+    numOfTweets = 100
     #text = request.form #returns the array
     keyword = request.form["search_query"]  #Grab input data from the form
     try:
         tweet_list = get_tweets(listOfTweets, keyword, numOfTweets)
-        retweetAvg = "100"
-        retweetAvg = process_tweets(tweet_list)
-        #print avg_retweet
+        retweetAvg = getRetweetsAvg(tweet_list)
         return render_template("results.html", dog = tweet_list, work = retweetAvg)
     except:
         return render_template("bad_results.html")

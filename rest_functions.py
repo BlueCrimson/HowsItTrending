@@ -14,32 +14,48 @@ def get_tweets(listOfTweets, keyword, numOfTweets):
     for tweet in tweepy.Cursor(api.search, q=keyword).items(numOfTweets):
         listOfTweets.append({'Screen Name': tweet.user.screen_name})
         listOfTweets.append({'User Name': tweet.user.name})
-        listOfTweets.append({'Tweet Created At': str(tweet.created_at)})
+        listOfTweets.append({'Tweet Created At': unicode(tweet.created_at)})
         listOfTweets.append({'Tweet Text': tweet.text})
-        listOfTweets.append({'User Location': str(tweet.user.location)})
-        listOfTweets.append({'Tweet Coordinates': str(tweet.coordinates)})
-        listOfTweets.append({'Retweet Count': str(tweet.retweet_count)})
-        listOfTweets.append({'Retweed': str(tweet.retweeted)})
-        listOfTweets.append({'Phone Type': str(tweet.source)})
+        listOfTweets.append({'User Location': unicode(tweet.user.location)})
+        listOfTweets.append({'Tweet Coordinates': unicode(tweet.coordinates)})
+        listOfTweets.append({'Retweet Count': unicode(tweet.retweet_count)})
+        listOfTweets.append({'Retweed': unicode(tweet.retweeted)})
+        listOfTweets.append({'Phone Type': unicode(tweet.source)})
         #listOfTweets.append({'Sensitive': })
-        listOfTweets.append({'Language': str(tweet.lang)})
+        listOfTweets.append({'Language': unicode(tweet.lang)})
     return listOfTweets
 
-def process_tweets(listOfTweets):
+def getRetweetAvg(listOfTweets):
     numOfRetweets = 0
     count = 0
     for tweet in listOfTweets:
         if tweet.get('Retweet Count'):
             numOfRetweets += int(tweet.get('Retweet Count'))
         count += 1
-    test = numOfRetweets/count
     return float(numOfRetweets/count)
 
-
+def getRetweetTotal(listOfTweets):
+    numOfRetweets = 0
+    for tweet in listOfTweets:
+        if tweet.get('Retweet Count'):
+            numOfRetweets += int(tweet.get('Retweet Count'))
+    return numOfRetweets
+"""
+def getRetweetPercent(listOfTweets):
+    peopleRetweet = 0
+    peopleTotal = 0
+    for tweet in listOfTweets:
+        if tweet.get('Retweet Count'):
+            if int(tweet.get('Retweet Count')) > 0:
+                peopleRetweet += int(tweet.get('Retweet Count'))
+                peopleTotal += int(tweet.get('Retweet Count'))
+            else:
+    return numOfRetweets
+"""
 
 #listOfTweets = [{}]
-#print get_tweets(listOfTweets, "ok", 1)
-#listOfTweets = get_tweets(listOfTweets, '#PokemonGo', 1)
+#get_tweets(listOfTweets, "ok", 10)
+#listOfTweets = get_tweets(listOfTweets, '#PokemonGo', 200)
 #print process_tweets(listOfTweets)
 
 #for i in listOfTweets:
