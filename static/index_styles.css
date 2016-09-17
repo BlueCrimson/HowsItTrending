@@ -1,18 +1,79 @@
 body {
-	background-color: #F5F5F5;
-}
-h1 {
-	color: red;
-	font-size: 150%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
 }
 #heroWrapper {
+    background-color: #E3F2FD;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
-#searchBar {
-	margin: auto auto auto auto;
-	
+#heroIMG {
+	display: flex;
+    flex-direction: column;
+	height: 90vh;
+	justify-content: center;
+    align-items: center;
+    flex: 1;
 }
+#heroWords {
+    padding-bottom: 90px;
+    font-family: 'Raleway', sans-serif;
+    color: #3e3e3e;
+    text-align: center;
+    font-size: 200%;
+}
+#searchBar {
+	height: 35px;
+	width: 400px;
+    font-size: 135%;
+	margin: auto auto auto auto;
+}
+/* SEARCH BAR PALCE HOLDER */
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #c3c3c3;
+    font-family: 'Raleway', sans-serif;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #c3c3c3;
+    font-family: 'Raleway', sans-serif;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #c3c3c3;
+    font-family: 'Raleway', sans-serif;
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #c3c3c3;
+}
+
+#bodyWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 80%;
+    margin: auto auto auto auto;
+}
+    .bodyNode {
+        display: flex;
+        flex-direction: column;
+    }
+        .bodyNode h2 {
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 140%;
+            margin-bottom: 14px;
+        }
+        .bodyNode p {
+            text-align: center;
+            color: #4b4b4b;
+            font-family: 'Raleway', sans-serif;
+            line-height: 120%;
+            font-size: 120%;  
+        }

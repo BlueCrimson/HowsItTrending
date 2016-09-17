@@ -1,9 +1,43 @@
 #heroWrapper {
 	background-color: #2196F3;
 }
-li {
-	font-family: 'Open Sans', sans-serif;
-	color: black;
-	font-size: 12px;
-	line-height: 120%;
+#tweet_container {
+	overflow: auto;
+	height: 350px;
+	width: 4000px;
+}
+#dictWrapper {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	flex: 1;
+	overflow: auto;
+}
+	#dict_row {
+		display: flex;
+		flex-direction: row;
+		flex: 1;
+		width: 80%;
+	}
+		#dict_key {
+			flex: 1;
+			border: 1px solid black;
+		}
+		#dict_value {
+			flex: 2;
+			border: 1px solid black;
+		}
+.dataBox {
+	height: 350px;
+	flex: 1;
+	min-width: 300px;
+	flex-grow: 2;
+}
+#data_wrapper {
+	display: flex;
+	justify-content: space-around;
+	flex: 1;
+	flex-wrap: wrap;
+	width: 80%;
+	margin: auto;
 }
