@@ -1,6 +1,7 @@
 import tweepy
 import time
 import json
+import datetime     
 #from keys import classes/functions and etc
 from keys import *
 
@@ -26,6 +27,7 @@ def get_tweets(listOfTweets, keyword, numOfTweets):
         listOfTweets.append(dict_)   
     return listOfTweets
 
+#STATUS: STABLE
 def getRetweetAvg(listOfTweets):
     numOfRetweets = 0
     count = 0
@@ -38,6 +40,7 @@ def getRetweetAvg(listOfTweets):
     else:
         return float(numOfRetweets/count)
 
+#STATUS: STABLE
 def getRetweetCount(listOfTweets):
     numOfRetweets = 0
     for tweet in listOfTweets:
@@ -45,6 +48,7 @@ def getRetweetCount(listOfTweets):
             numOfRetweets += int(tweet.get('Retweet Count'))
     return numOfRetweets
 
+#STATUS: NAIVE
 def getRetweetPercent(listOfTweets):
     peopleTotal = len(listOfTweets)
     peopleRetweet = 0
@@ -54,21 +58,58 @@ def getRetweetPercent(listOfTweets):
                 peopleRetweet += 1
     return float(peopleRetweet/peopleTotal)
 
-def phoneTypePercent(listOfTweets):
+#STATUS: STABLE
+def getPhoneTypePercent(listOfTweets):
     peopleTotal = len(listOfTweets)
     phoneTypes = {}
-    #print listOfTweets[2]
+    #print len(phoneTypes)
+    match = False   #If phone type has been added to the list yet
+    
     for tweet in listOfTweets:
-        print tweet['Phone Type']
+        if len(phoneTypes) == 0:
+            phoneTypes.update({ unicode(tweet['Phone Type']): 1 })
+        else:
+            match = False
+            for key, value in phoneTypes.iteritems():
+                if key == unicode(tweet['Phone Type']):
+                    phoneTypes[unicode(tweet['Phone Type'])] += 1
+                    match = True
+                    break
+            if match == False:
+                phoneTypes.update({tweet['Phone Type']: 1})
+    return phoneTypes       
 
-    #return #phoneTypes
+def getTweetsOverTime(listOfTweets):
+    timeStamps = []
+    timeStamps.append({"Time" : "Tweets"})
+    for tweet in listOfTweets:
+        timeStamps.append({tweet['Tweet Created At'] : tweet['Tweet Text']})
+    return timeStamps
+"""
+def getTweetsOverTime(listOfTweets):
+    timeStamps = []
+    timeStamps.append(["Time", "Tweets"])
+    for tweet in listOfTweets:
+        imeStamps.append([tweet['Tweet Created At']], [tweet['Tweet Text']])
+    return timeStamps
+"""
 
-
+def getMiscData(listOfTweets):
+    arr = []
+    arr.append(getRetweetCount(listOfTweets))
+    arr.append(getRetweetAvg(listOfTweets))
+    return arr
 
 listOfTweets = []
 #get_tweets(listOfTweets, "ok", 10)
-listOfTweets = get_tweets(listOfTweets, '#PokemonGo', 2)
-phoneTypePercent(listOfTweets)
+listOfTweets = get_tweets(listOfTweets, 'friends', 100)
+arr = getTweetsOverTime(listOfTweets)
+for i in arr:
+    for key, value in i.iteritems():
+        print key, value
+
+
+#TODO 9-3-16: CURRENTLY OF LIST OF DICT FOR TWEETS OVER TIME, IMPLMENT GOOGLE CHARTS WITH IT. ALSO, HOW TO COMBINE THE CHARTS APIS TO ONE JS AND MAKE IT A STATIC JS?O
 
 #for i in listOfTweets:
 #    if i.get('Retweet Count'):
