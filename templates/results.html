@@ -9,19 +9,70 @@
         <!-- PAGE SPECIFIC STYLES -->
         <link rel="stylesheet" href="{{ url_for('static', filename='result_styles.css') }}">
         <!-- FONTS -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">      
-    </head>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        
+        <!-- Load Google Charts -->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <!--Load the AJAX API-->
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <!-- Load individual files -->
+        <script type="text/javascript" src="{{ url_for('static', filename='device_used.js') }}"> </script>
+        <script type="text/javascript" src="{{ url_for('static', filename='tweetsOverTime.js') }}"> </script>      
+        <!-- Basically we are going to store the JS file in the static folder and the respective functions with the template in here -->
+        <script type="text/javascript">
+          getDeviceUsed({{devicePercent|safe}});
+          works();
+      </script>
+
+      <!-- END OF GOOGLE CHARTS API -->
+    </head> 
     <body>
-      <div id="heroWrapper">
-        <h1>RESULTS: How's it Trending</h1>
-        <p>
-           <!-- SPACING MATTERS -->
-            <ul>
-               {% for i in dog %}
-                  <li> {{ i }} </p>
-               {% endfor %}
-            </ul> 
-        </p>
-      </div>
+      <nav>
+        <h1>How's It Trending</h1>
+        <ul id="navList">
+            <a href="#"><li>Features</li></a>
+            <a href="#"><li>Filler</li></a>
+        </ul>
+      </nav>
+        <h1>IMPLEMENT Loading screen bright orange circle</h1>
+      <!-- DATA WRAPPER -->
+      <div id="data_wrapper">
+          <!-- DISPLAYING TWEETS -->
+          <div id="tweet_container" class="dataBox">
+             {% for _dict in dog %}
+              <div id="dictWrapper">
+                {% for key, value in _dict.iteritems() %}
+                <div id="dict_row">
+                  <div id="dict_key"> {{ key }} </div>
+                  <div id="dict_value"> {{ value }} </div>
+                </div>
+                {% endfor %}
+              </div>
+              {% endfor %}
+          </div>
+          <!--  END OF TWEETS -->
+          <!-- PIE CHART -->
+          <div id="chart_div" class="dataBox"></div>
+          <!-- RAW DATA -->
+          <div class="dataBox">
+              <div>
+                Retweet count: 
+                {{miscData[0]}}
+              </div>
+              <div>
+                Retweet Avg:
+                {{miscData[1]}}  
+              </div>          
+          </div>
+          <div class="dataBox">
+            {%for _dict in tweetsOverTime%}
+                {% for key, value in _dict.iteritems() %}
+                  <div>{{key}}</div>
+                  <div>{{value}}</div>
+                {% endfor %}
+            {% endfor %}
+          </div>
+      </div> 
+      <div id="chart_dive" style="width: 100%; height: 500px;"></div>       
     </body>
 </html>
