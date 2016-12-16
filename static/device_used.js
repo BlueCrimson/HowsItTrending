@@ -31,7 +31,7 @@ function getDeviceUsed(devicePercent) {
         sliceVisibilityThreshold: .05
       };
         // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
         chart.draw(data, options);
 
       }
