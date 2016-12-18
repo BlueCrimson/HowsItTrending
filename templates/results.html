@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Document</title>
+        <title>How's It Trending</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
         <!-- GENERAL STYLES -->
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
@@ -34,22 +34,21 @@
             <a href="#"><li>Filler</li></a>
         </ul>
       </nav>
-        <h1>IMPLEMENT Loading screen bright orange circle</h1>
+      <h1>IMPLEMENT Loading screen bright orange circle</h1>
+      <h1>{{tweetFreq}}</h1>
       <!-- END OF NAVIGATION -->
 
       <!-- START DATA WRAPPER -->
-      <div id="data_wrapper">
+      <div id="resultWrapper">
           <!-- TWEETS OVER TIME -->
            <div class="dataBox">
-            {%for _dict in tweetsOverTime%}
-                {% for key, value in _dict.iteritems() %}
-                  <div>{{key}}</div>
-                  <div>{{value}}</div>
-                {% endfor %}
+            {%for timeStamp in tweetsOverTime%}
+                <div>{{timeStamp}}</div>
             {% endfor %}
           </div>
           <!-- END OF TWEETES OVER TIME -->
-
+          
+          <div class="row">           
           <!-- START TWEETS -->
           <div id="tweet_container" class="dataBox">
              {% for _dict in dog %}
@@ -68,7 +67,9 @@
           <!-- START PIE CHART -->
           <div id="chart_div" class="dataBox"></div>
           <!-- END OF PIE CHART -->
+          </div> <!-- End of row -->
 
+          <div class="row">
           <!-- START GEO -->
           <div class ="dataBox"><h1>GeoLocations</h1></div>
           <!-- END GEO -->
@@ -85,10 +86,10 @@
               </div>          
           </div>
           <!-- END RAW INFO -->
-
+          </div>
+          
           <!-- FOOTER -->
           <footer>Suh</footer>
-
       </div> 
       <div id="chart_dive" style="width: 100%; height: 500px;"></div>       
     </body>
