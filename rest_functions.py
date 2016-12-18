@@ -1,18 +1,17 @@
 import tweepy
-import time
 import json
-import datetime     
-#from keys import classes/functions and etc
-from keys import *
+import time
+import datetime
+import moment      # Used to parse tweet date
+from keys import * 
 
 
-#Sets up twitter authentication
+#Set up Twitter Authentication
 auth = tweepy.OAuthHandler(consumer_key(), consumer_secret())
 auth.set_access_token(access_token(), access_token_secret())
 api = tweepy.API(auth)
 
 def get_tweets(listOfTweets, keyword, numOfTweets):
- 
     for tweet in tweepy.Cursor(api.search, q=keyword).items(numOfTweets):
         dict_ = {'Screen Name': tweet.user.screen_name,
             'User Name': tweet.user.name,
@@ -27,7 +26,6 @@ def get_tweets(listOfTweets, keyword, numOfTweets):
         listOfTweets.append(dict_)   
     return listOfTweets
 
-#STATUS: STABLE
 def getRetweetAvg(listOfTweets):
     numOfRetweets = 0
     count = 0
@@ -81,18 +79,14 @@ def getPhoneTypePercent(listOfTweets):
 
 def getTweetsOverTime(listOfTweets):
     timeStamps = []
-    timeStamps.append({"Time" : "Tweets"})
+    timeStamps.append("Time")
     for tweet in listOfTweets:
-        timeStamps.append({tweet['Tweet Created At'] : tweet['Tweet Text']})
+        timeStamps.append(tweet['Tweet Created At'])
+        timestring = tweet['Tweet Created At']
+        print timestring
+        m = moment.date(timestring, '%Y-%m-%d %H:%M:%S')
+        print m.hour
     return timeStamps
-"""
-def getTweetsOverTime(listOfTweets):
-    timeStamps = []
-    timeStamps.append(["Time", "Tweets"])
-    for tweet in listOfTweets:
-        imeStamps.append([tweet['Tweet Created At']], [tweet['Tweet Text']])
-    return timeStamps
-"""
 
 def getMiscData(listOfTweets):
     arr = []
@@ -100,22 +94,13 @@ def getMiscData(listOfTweets):
     arr.append(getRetweetAvg(listOfTweets))
     return arr
 
+def getTweetFreq(listOfTweets):
+    if len(listOfTweets) >= 95:
+        return "Your keyword is tweeted a lot!"
+    return "Your keyword is infrequently used."
+
 listOfTweets = []
 #get_tweets(listOfTweets, "ok", 10)
 listOfTweets = get_tweets(listOfTweets, 'friends', 100)
-arr = getTweetsOverTime(listOfTweets)
-for i in arr:
-    for key, value in i.iteritems():
-        print key, value
-
-
-#TODO 9-3-16: CURRENTLY OF LIST OF DICT FOR TWEETS OVER TIME, IMPLMENT GOOGLE CHARTS WITH IT. ALSO, HOW TO COMBINE THE CHARTS APIS TO ONE JS AND MAKE IT A STATIC JS?O
-
-#for i in listOfTweets:
-#    if i.get('Retweet Count'):
-#        print i.get('Retweet Count')
-
-#The dot operator allows for EASY dict-value getting
-#process_data(data)
-#for tweet in data:
-#    print_tweet(tweet)
+print getTweetFreq(listOfTweets)
+#arr = getTweetsOverTime(listOfTweets)
