@@ -9,13 +9,17 @@ body {
 	height: 350px;
 	width: 4000px;
 }
-#data_wrapper {
+#resultWrapper {
 	display: flex;
 	justify-content: space-around;
 	flex: 1;
 	flex-wrap: wrap;
 	width: 80%;
 	margin: auto;
+}
+.row {
+	display: flex;
+	flex-direction: row;
 }
 #dictWrapper {
 	display: flex;
