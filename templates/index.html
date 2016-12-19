@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>How's It Trending</title>
 	<!-- RESET CSS -->
 	<link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
 	<!-- GENERAL STYLES -->
@@ -13,7 +13,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Raleway:300" rel="stylesheet">
     <!--    -->
-
 </head>
 <body>
 
@@ -28,29 +27,20 @@
 	    </nav>
 	<!-- END OF NAVIGATION -->
 	    <div id="heroIMG">
-	        <div id="heroWords">Discover Trends <br> beautifully</div>
+	        <div id="heroWords">Search any word or phrase!</div>
 		    <form action="http://127.0.0.1:5000/results" method="POST">
 		        <input type="text" name="search_query" placeholder="Lookup any word or hashtag" id="searchBar"></input>
 				<!--   <input type="submit"  value="submit">   --> 
 			</form>
 		</div>
     </div>
+
     <!-- PRODUCT DESCRIPTION  -->
     <div id="bodyWrapper">
-        <div class="bodyNode">
-            <h2>Trending Hashtags</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus hic sed aliquam ab dicta susrit, minus vitae neque emporibus molestias earum?</p>
-        </div>
-        <div class="bodyNode">
-            <h2>Beautiful Data</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero harum culpa, quis dignissimos maxime,  asperiores?</p>
-            </div>
-        <div class="bodyNode">
-            <h2>Ease of use</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam nisi eum adipisci est vel, dolorum tenetuem nihil nobivitae.</p>
-        </div>            
+        <p>How's It Trending is a small web application that gathers the last tweets made given contianing a specific word or phrase! It is then processed through a python application utilizing Twitter's REST API. (Make it a link)</p>
     </div>
     <!-- END OF PRODUCT DESCRIPTION -->
+
     <!-- FOOTER -->
     <footer></footer>
     <!-- END OF FOOTER -->
