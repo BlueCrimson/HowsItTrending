@@ -18,15 +18,16 @@ body {
 	margin: auto;
 }
 .row {
+	width: 100%;
 	display: flex;
 	flex-direction: row;
+	margin-top: 30px;
 }
-#dictWrapper {
+.tweetRow {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	width: 100%;
 	flex: 1;
-	overflow: auto;
 }
 	#dict_row {
 		display: flex;
@@ -47,4 +48,16 @@ body {
 	flex: 1;
 	min-width: 300px;
 	flex-grow: 2;
+}
+
+.dataBoxHeader {
+	margin: auto auto auto auto;
+	text-align: center;
+}
+#devicesUsedContainer {
+	flex: 2;
+}
+#tweetsOverTime{
+	height: 250px;
+	overflow: auto;
 }
