@@ -14,14 +14,14 @@ api = tweepy.API(auth)
 def get_tweets(listOfTweets, keyword, numOfTweets):
     for tweet in tweepy.Cursor(api.search, q=keyword).items(numOfTweets):
         dict_ = {'Screen Name': tweet.user.screen_name,
-            'User Name': tweet.user.name,
-            'Tweet Created At': unicode(tweet.created_at),
-            'Tweet Text': tweet.text,
-            'User Location': unicode(tweet.user.location),
-            'Tweet Coordinates': unicode(tweet.coordinates),
-            'Retweet Count': unicode(tweet.retweet_count),
-            'Retweeted': unicode(tweet.retweeted),
-            'Phone Type': unicode(tweet.source)
+                'User Name': tweet.user.name,
+                'Tweet Created At': unicode(tweet.created_at),
+                'Tweet Text': tweet.text,
+                'User Location': unicode(tweet.user.location),
+                'Tweet Coordinates': unicode(tweet.coordinates),
+                'Retweet Count': unicode(tweet.retweet_count),
+                'Retweeted': unicode(tweet.retweeted),
+                'Phone Type': unicode(tweet.source)
                 }
         listOfTweets.append(dict_)   
     return listOfTweets
@@ -85,7 +85,7 @@ def getTweetsOverTime(listOfTweets):
         timestring = tweet['Tweet Created At']
         print timestring
         m = moment.date(timestring, '%Y-%m-%d %H:%M:%S')
-        print m.hour
+        print m.hour + m.minute
     return timeStamps
 
 def getMiscData(listOfTweets):
@@ -93,6 +93,15 @@ def getMiscData(listOfTweets):
     arr.append(getRetweetCount(listOfTweets))
     arr.append(getRetweetAvg(listOfTweets))
     return arr
+
+def getDisplayedTweets(listOfTweets):
+    displayedTweets = []
+    for tweet in listOfTweets:
+        userTweet = []
+        userTweet.append(tweet['User Name'])
+        userTweet.append(tweet['Tweet Text'])
+        displayedTweets.append(userTweet)
+    return displayedTweets
 
 def getTweetFreq(listOfTweets):
     if len(listOfTweets) >= 95:
@@ -102,5 +111,5 @@ def getTweetFreq(listOfTweets):
 listOfTweets = []
 #get_tweets(listOfTweets, "ok", 10)
 listOfTweets = get_tweets(listOfTweets, 'friends', 100)
-print getTweetFreq(listOfTweets)
+getDisplayedTweets(listOfTweets)
 #arr = getTweetsOverTime(listOfTweets)
