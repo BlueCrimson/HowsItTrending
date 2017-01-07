@@ -78,15 +78,27 @@ def getPhoneTypePercent(listOfTweets):
     return phoneTypes       
 
 def getTweetsOverTime(listOfTweets):
-    timeStamps = []
-    timeStamps.append("Time")
+    aaa = []
+    pts = [-1,0,0,0,0,0]
+    index = -1
+    #timeStamps.append("Time")
     for tweet in listOfTweets:
-        timeStamps.append(tweet['Tweet Created At'])
+        #timeStamps.append(tweet['Tweet Created At'])
         timestring = tweet['Tweet Created At']
-        print timestring
+        #print timestring
         m = moment.date(timestring, '%Y-%m-%d %H:%M:%S')
-        print m.hour + m.minute
-    return timeStamps
+        print str(m.month) + " " + str(m.day) + " " + str(m.hour) + " " + str(m.minute) + " " + str(m.second)
+        ts = [m.year, m.month, m.day, m.hour, m.minute, m.second]
+        if pts == ts:
+            aaa[index][1] += 1
+        else:
+            aaa.append([ts, 1])
+            index += 1
+        if index >= 20:
+            break
+        pts = ts
+    print aaa
+    return aaa
 
 def getMiscData(listOfTweets):
     arr = []
@@ -110,6 +122,7 @@ def getTweetFreq(listOfTweets):
 
 listOfTweets = []
 #get_tweets(listOfTweets, "ok", 10)
-listOfTweets = get_tweets(listOfTweets, 'friends', 100)
+listOfTweets = get_tweets(listOfTweets, 'friends', 2)
 getDisplayedTweets(listOfTweets)
+print getTweetsOverTime(listOfTweets)
 #arr = getTweetsOverTime(listOfTweets)

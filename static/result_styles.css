@@ -44,9 +44,10 @@ body {
 			border: 1px solid black;
 		}
 .dataBox {
-	height: 350px;
+	height: 400px;
 	flex: 1;
 	min-width: 300px;
+	width: 100%;
 	flex-grow: 2;
 }
 
@@ -54,10 +55,18 @@ body {
 	margin: auto auto auto auto;
 	text-align: center;
 }
+#displayedTweets {
+	height: 300px;
+	width: 150px;
+	flex: 1;
+}
 #devicesUsedContainer {
-	flex: 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
 }
 #tweetsOverTime{
-	height: 250px;
+	height: 400px;
 	overflow: auto;
 }

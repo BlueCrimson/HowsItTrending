@@ -1,4 +1,4 @@
-function getDeviceUsed(devicePercent) {
+function getDeviceUsed(devicePercent, tweetsOverTime) {
     console.log("Get Device Used -- LOADED")
       // Load the Visualization API and the piechart package.
       google.charts.load('current', {'packages':['corechart','bar']});
@@ -37,7 +37,8 @@ function getDeviceUsed(devicePercent) {
         var deviceChart = new google.visualization.PieChart(document.getElementById('devicePieChart'));
         deviceChart.draw(deviceData, deviceOptions);
         //TEST TEST TEST
-        
+      
+      // Start of Tweets Over Time
       var tweetData = new google.visualization.DataTable();
       // Set up the X axis
       tweetData.addColumn('timeofday', 'Time');
@@ -46,20 +47,20 @@ function getDeviceUsed(devicePercent) {
       tweetData.addColumn('number', 'Number of Tweets');
 
       // Insert data entries
-      tweetData.addRows([
-        [[8, 30, 45], 5],
-        [[9, 0, 0], 10],
-        [[10, 0, 0, 0], 12],
-        [[10, 45, 0, 0], 13],
-        [[11, 0, 0, 0], 15],
-        [[12, 15, 45, 0], 20],
-        [[13, 0, 0, 0], 22],
-        [[14, 30, 0, 0], 25],
-        [[15, 12, 0, 0], 30],
-        [[16, 45, 0], 32],
-        [[16, 59, 0], 42]
-      ]);
-
+      // tweetData.addRows([
+      //   [[11, 30, 45], 5],
+      //   [[9, 0, 0], 10],
+      //   [[10, 0, 0, 0], 12],
+      //   [[10, 45, 0, 0], 13],
+      //   [[11, 0, 0, 0], 15],
+      //   [[12, 15, 45, 0], 20],
+      //   [[13, 0, 0, 0], 22],
+      //   [[14, 30, 0, 0], 25],
+      //   [[15, 12, 0, 0], 30],
+      //   [[16, 45, 0], 32],
+      //   [[16, 59, 0], 42]
+      // ]);
+      tweetData.addRows(tweetsOverTime)
       // Options for the bar chart
       var tweetOptions = google.charts.Bar.convertOptions({
         title: 'Tweets Through the day',
