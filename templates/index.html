@@ -1,134 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>How's It Trending</title>
-<!-- RESET CSS -->
-<link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
-<!-- GENERAL STYLES -->
-<link rel="stylesheet" href="{{ url_for('static', filename='styles.css')
-}}">
-<!-- PAGE SPECIFIC STYLES -->
-<link rel="stylesheet" href="{{ url_for('static',
-    filename='index_styles.css') }}">
-    <!-- FONTS -->
-    <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans"
-    rel="stylesheet">
-    <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300|Raleway:300"
-    rel="stylesheet">
-    <!--    -->
-    </head>
-    <body>
-
+    <meta charset="UTF-8">
+    <title>How's It Trending</title><!-- RESET CSS -->
+    <link href="{{ url_for('static', filename='reset.css') }}" rel="stylesheet"><!-- GENERAL STYLES -->
+    <link href="{{ url_for('static', filename='styles.css')}}" rel="stylesheet"><!-- PAGE SPECIFIC STYLES -->
+    <link href="{{ url_for('static', filename='index_styles.css') }}" rel="stylesheet"><!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Raleway:300" rel="stylesheet"><!--    -->
+</head>
+<body>
     <div id="heroWrapper">
-    <!-- NAVIGATION BAR -->
-    <nav>
-    <h1>How's It
-    Trending</h1>
-    <ul
-    id="navList">
-    <a
-    href="#"><li>Features</li></a>
-    <a
-    href="#"><li>Filler</li></a>
-    </ul>
-    </nav>
-    <!--
+        <!-- NAVIGATION BAR -->
+        <nav>
+            <h1 class="dataBoxHeader">How's It Trending</h1>
+            <div id="navList" style="margin-left: 2em">
+                <a href="#">
+                <ul>
+                    <li>Features</li>
+                    <li style="list-style: none; display: inline"></li>
+                    <li>Filler</li>
+                </ul></a>
+            </div>
+        </nav><!--
     END
     OF
     NAVIGATION
     -->
-    <div
-    id="heroIMG">
-    <div
-    id="heroWords">Search
-    any
-    word
-    or
-    phrase!</div>
-    <form
-    action="http://127.0.0.1:5000/results"
-    method="POST">
-    <input
-    type="text"
-    name="search_query"
-    placeholder="Lookup
-    any
-    word
-    or
-    hashtag"
-    id="searchBar"></input>
-    <!--
+        <div id="heroIMG">
+            <div id="heroWords">
+                Search any word or phrase!
+            </div>
+            <form action="http://127.0.0.1:5000/results" method="post">
+                <input id="searchBar" name="search_query" placeholder="Lookup any word or hashtag" type="text"> <!--
     <input
     type="submit"
     value="submit">
-    --> 
-    </form>
-    </div>
-    </div>
-
-    <!--
+    -->
+            </form>
+        </div>
+    </div><!--
     PRODUCT
     DESCRIPTION
     -->
-    <div
-    id="bodyWrapper">
-    <p>How's
-    It
-    Trending
-    is
-    a
-    small
-    web
-    application
-    that
-    gathers
-    the
-    last
-    tweets
-    made
-    given
-    contianing
-    a
-    specific
-    word
-    or
-    phrase!
-    It
-    is
-    then
-    processed
-    through
-    a
-    python
-    application
-    utilizing
-    Twitter's
-    REST
-    API.
-    (Make
-     it
-     a
-     link)</p>
-    </div>
-    <!--
+    <div id="bodyWrapper">
+        <p>How's It Trending is a small web application that gathers the last tweets made given contianing a specific word or phrase! It is then processed through a python application utilizing Twitter's REST API. (Make it a link)</p>
+    </div><!--
     END
     OF
     PRODUCT
     DESCRIPTION
     -->
-
-    <!--
-    FOOTER
-    -->
+    <!-- FOOTER -->
     <footer></footer>
-    <!--
-    END
-    OF
-    FOOTER
-    -->
-
-    </body>
-    </html>
+    <!-- END OF FOOTER -->
+</body>
+</html>
