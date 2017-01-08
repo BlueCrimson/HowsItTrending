@@ -1,12 +1,12 @@
 #TODO MOTION TOWARDS PYTHON 3
-from flask import Flask, render_template
-from flask import request
+#from flask import Flask, render_template
+#from flask import request
 from rest_functions import *
 import tweepy
 import time
 import json
 #from keys import classes/functions and etc
-
+from flask import *
 
 app = Flask(__name__)
 #Home Page
